@@ -34,3 +34,9 @@ Send CV and any other relevant documents to *panos.mavros@sec.ethz.ch* and *dom.
 
 The Nanyang <sub><sup>(*which means "Southeast Asia" in Chinese*)</sup></sub> Technological University (NTU) is one of the two main universities in Singapore. Although relatively young compared to most of western institutes, NTU is a dynamic and vibrant university that has quickly achieved an international leadership in many areas. NTU has been ranked as 1st in the ranking of young universities in the QS World University Rankings since 2015, and is considered as a top-tier research institution in Asia.
 Aside from its academic qualities, NTU is known for its green campus (NTU has been listed as one of the world's most beautiful universities) and its architectural landmarks, making it an ideal location to foster a positive growth mindset.
+
+## Thesis / Intern (NICE project) <sub><sup>(posted 05/11/2021)</sup></sub>
+
+If you are interested to do your BSc or MSc thesis with us, or do an internship, reach out by sending an email *panos.mavros@sec.ethz.ch* and *dom.makowski@gmail.com*.
+
+
