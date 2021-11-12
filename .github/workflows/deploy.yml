@@ -20,7 +20,9 @@ jobs:
         uses: r-lib/actions/setup-pandoc@v1
 
       - name: Change working directory
-        run: Rscript -e "setwd('./website/')"
+        run: |
+          setwd('./website/')
+          print(getwd())
 
       - name: Install rmarkdown and blogdown
         run: Rscript -e 'install.packages(c("rmarkdown","blogdown"))'
