@@ -23,6 +23,7 @@ jobs:
         run: |
           setwd('./website/')
           print(getwd())
+        shell: Rscript {0}
 
       - name: Install rmarkdown and blogdown
         run: Rscript -e 'install.packages(c("rmarkdown","blogdown"))'
