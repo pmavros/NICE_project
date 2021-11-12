@@ -7,9 +7,9 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: Reality Bending League # Website name
-baseurl: 'https://pmavros.github.io/' # Website URL
-copyright: '&copy; Reality Bending Lab' # Footer text, e.g. '© {year} Me'
+title: NICE Project # Website name
+baseurl: 'https://pmavros.github.io/NICE_project/' # Website URL
+copyright: '&copy; NICE Project' # Footer text, e.g. '© {year} Me'
 # publishDir: "docs"
 
 ############################
