@@ -4,7 +4,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: NICE project # Website name
-baseurl: 'https://realitybending.github.io/' # Website URL
+baseurl: 'https://pmavros.github.io/NICE_project/' # Website URL
 copyright: '&copy; NICE Project' # Footer text, e.g. '© {year} Me'
 publishDir: "docs"
 
