@@ -1,0 +1,22 @@
+# Theme metadata
+name = "Rebel"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#4CAF50" # purple: "#9C27B0"
+
+# Menu
+menu_primary = "#4CAF50" # purple: "#9C27B0"
+menu_text = "#FFFFFF"
+menu_text_active = "#FFC107"
+menu_title = "#FFFFFF"
+
+# Home sections
+home_section_odd = "rgb(255, 255, 255)"
+home_section_even = "rgb(250,250,250)"
+
+[dark]
+  link = "#bbdefb"
+  link_hover = "#bbdefb"

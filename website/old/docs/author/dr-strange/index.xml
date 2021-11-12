@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dr Strange | Reality Bending League</title>
+    <link>/author/dr-strange/</link>
+      <atom:link href="/author/dr-strange/index.xml" rel="self" type="application/rss+xml" />
+    <description>Dr Strange</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending League</copyright>
+    <image>
+      <url>/author/dr-strange/avatar_hu763ce11f207065aea58a8a216ee3ff0d_579388_270x270_fill_q75_lanczos_center.jpg</url>
+      <title>Dr Strange</title>
+      <link>/author/dr-strange/</link>
+    </image>
+    
+  </channel>
+</rss>

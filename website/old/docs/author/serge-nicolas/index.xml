@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Serge Nicolas | Reality Bending League</title>
+    <link>/author/serge-nicolas/</link>
+      <atom:link href="/author/serge-nicolas/index.xml" rel="self" type="application/rss+xml" />
+    <description>Serge Nicolas</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending League</copyright><lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu2cedcd67292931a8a21afc6006ffd93f_49000_512x512_fill_lanczos_center_2.png</url>
+      <title>Serge Nicolas</title>
+      <link>/author/serge-nicolas/</link>
+    </image>
+    
+    <item>
+      <title>2019 - Phenomenal, bodily and brain correlates of fictional reappraisal as an implicit emotion regulation strategy</title>
+      <link>/publication/makowski2019phenomenal/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/makowski2019phenomenal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2017 - &#34;Being there&#34; and remembering it: Presence improves memory encoding</title>
+      <link>/publication/makowski2017being/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/makowski2017being/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

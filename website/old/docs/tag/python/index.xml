@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python | Reality Bending League</title>
+    <link>/tag/python/</link>
+      <atom:link href="/tag/python/index.xml" rel="self" type="application/rss+xml" />
+    <description>Python</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© Reality Bending League</copyright>
+    <image>
+      <url>/images/icon_hu2cedcd67292931a8a21afc6006ffd93f_49000_512x512_fill_lanczos_center_2.png</url>
+      <title>Python</title>
+      <link>/tag/python/</link>
+    </image>
+    
+    <item>
+      <title>NeuroKit</title>
+      <link>/project/neurokit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/project/neurokit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pyllusion</title>
+      <link>/project/pyllusion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/project/pyllusion/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
