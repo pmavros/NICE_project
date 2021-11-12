@@ -19,12 +19,6 @@ jobs:
       - name: Setup Pandoc
         uses: r-lib/actions/setup-pandoc@v1
 
-      - name: Change working directory
-        run: |
-          setwd('./website/')
-          print(getwd())
-        shell: Rscript {0}
-
       - name: Install rmarkdown and blogdown
         run: Rscript -e 'install.packages(c("rmarkdown","blogdown"))'
 
@@ -32,7 +26,10 @@ jobs:
         run: Rscript -e 'blogdown::install_hugo("0.88.1")'
 
       - name: Build site with blogdown
-        run: Rscript -e "blogdown::build_site()"
+        run: |
+          setwd('./website/')
+          blogdown::build_site()
+        shell: Rscript {0}
 
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
