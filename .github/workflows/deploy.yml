@@ -8,6 +8,8 @@ name: 🚀 Build and Deploy
 jobs:
   build:
     runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
