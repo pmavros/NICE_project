@@ -8,7 +8,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: Reality Bending League # Website name
-baseurl: 'https://realitybending.github.io/' # Website URL
+baseurl: 'https://pmavros.github.io/' # Website URL
 copyright: '&copy; Reality Bending Lab' # Footer text, e.g. '© {year} Me'
 # publishDir: "docs"
 
