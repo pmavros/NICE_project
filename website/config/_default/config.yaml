@@ -6,7 +6,7 @@
 title: NICE project # Website name
 baseurl: 'https://pmavros.github.io/NICE_project/' # Website URL
 copyright: '&copy; NICE Project' # Footer text, e.g. '© {year} Me'
-publishDir: "docs"
+# publishDir: "docs"
 
 ############################
 ## LANGUAGE
