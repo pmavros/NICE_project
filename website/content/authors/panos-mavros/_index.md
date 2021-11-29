@@ -6,38 +6,38 @@ title: Panos Mavros
 superuser: true
 
 # Role/position/tagline
-role: Research Fellow
+role: Principal Investigator, Senior Researcher
 
 # Organizations/Affiliations to show in About widget
 organizations:
-- name: Nanyang Technological University, Singapore
-  url: https://www.ntu.edu.sg/
+- name: Future Cities Laboratory, Singapore-ETH Centre, Singapore
+  url: https://www.fcl.ethz.ch/
 
 # Short bio (displayed in user profile at end of posts)
-bio: Trained as neuropsychologist and CBT psychotherapist, I am currently working as a researcher at the Clinical Brain Lab in Singapore, on the neuroscience of reality perception.
+bio: Trained as an architect and specialised in spatial cognition and navigation, I am currently working as a senior researcher at the Future Cities Laboratory of the Singapore-ETH Centre, working with the Chair of Cognitive Science (ETH Zürich) on spatial cognition, navigation and experience in complex urban environments.
 
 # Interests to show in About widget
 interests:
-- Sense of reality
-- Emotion regulation
-- Cognitive control
-- Clinical neuropsychology
-- Neuroaesthetics
-- History of psychiatry
-- Neapolitan pizze 🍕
+- Spatial Cognition
+- Environmental Neuroscience
+- Architecture
+- Urban Design
+- Emotion & places
+
+
 
 # Education to show in About widget
 education:
   courses:
-  - course: PhD in Psychology
-    institution: Université de Paris
-    year: 2018
-  - course: MSc in Clinical Neuropsychology and Cognitive Psychology
-    institution: Université de Paris
-    year: 2014
-  - course: BSc in Psychology
-    institution: Université de Paris
-    year: 2012
+  - course: PhD in Advanced Spatial Analysis
+    institution: University College London (UCL)
+    year: 2019
+  - course: MSc by Research in Digital Media and Culture
+    institution: University of Edinburgh
+    year: 2011
+  - course: Dip Ing in Architecture
+    institution: National Technological University of Athens (NTUA)
+    year: 2010
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
@@ -49,16 +49,16 @@ social:
   link: '#contact'
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/Dom_Makowski
+  link: https://twitter.com/mavrosP
 - icon: google-scholar
   icon_pack: ai
-  link: https://scholar.google.fr/citations?user=bg0BZ-QAAAAJ&hl=en
+  link: https://scholar.google.com/citations?user=mzjnG8gAAAAJ&hl=en
 - icon: researchgate
   icon_pack: fab
-  link: https://www.researchgate.net/profile/Dominique_Makowski
+  link: https://www.researchgate.net/profile/Panagiotis-Mavros-2
 - icon: github
   icon_pack: fab
-  link: https://github.com/DominiqueMakowski
+  link: https://github.com/pmavros
 # Link to a PDF of your resume/CV.
 # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.toml`,
 # and uncomment the lines below.
@@ -67,7 +67,7 @@ social:
 #   link: https://dominiquemakowski.github.io/CV/
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: "dom.makowski@gmail.com"
+email: "mavros.panos@gmail.com"
 
 # Highlight the author in author lists? (true/false)
 highlight_name: false
@@ -76,5 +76,7 @@ user_groups:
 - Principal Investigators
 ---
 
-Trained as clinical neuropsychologist, CBT psychotherapist <sub><sup>(*and* [***others***](https://dominiquemakowski.github.io/cv/))</sup></sub>, I am currently working as a postdoc at the Clinical Brain Lab in Singapore, in which I lead the [**Reality Bending Team**](https://realitybending.github.io/) 🧙 (ReBeL). I'm fluent in French, English, Polish, Python, and currently learning Italian. My main figures of reference are Marcus Aurelius, Sisyphus and Yoda. My interests include scientific methodology, history of art and religion, and philosophy. My research focuses on aspects of [**reality bending**](https://realitybending.github.io/research/) (e.g., fiction, deception, fake news, illusions, and altered states of consciousness such as through meditation or immersion). I also try to improve the access to advanced analysis techniques by developing open-source software and tools.
+Trained in architecture, spatial cognition and mobile psychophysiological methods I am currently working as a postdoc at the Future Cities Laboratory in Singapore, working with the Chair of Cognitive Science of ETH Zürich and leading the project [**A Neuroscientific Investigation of Crowdedness and Environmental typology**](pmavros.github.io/NICE_project) 🧙 (NICE), together with Dominique Makowski. 
+
+My research interests are the intersection of architectural and urban design with the psychological experience of spaces, combining spatial analysis and behavioural science methods and using mobile psychophysiological methods to understand how we feel in different spaces. 
 
