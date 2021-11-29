@@ -14,14 +14,19 @@
 // eventually need to log files, enter player id
 // also build game ";evels"
 
-int n_crowd = 500;
-float player_y = 180;
-float player_x = 1;
-float player_speed = 1;
-int player_radius = 10;
-float x_speed_mu = 0; // mean speed of crowd
+// Player parameters
+PVector init_player_pos = new PVector(0,180);
+float init_player_speed = 1;
+float player_radius = 10;
+float agent_radius = 2;
+
+agent player;
+
+// Crowd parameters
+int n_crowd = 100;
+float x_speed_mu = 1; // mean speed of crowd
 int x_speed_sd = 1; // standard deviation of crowd-speed
-float reverse_prob = 0.1; // change to specify percent of agents that are walking in opposite direction
+float reverse_prob = 0.5; // change to specify percent of agents that are walking in opposite direction
 
 //DECLARE - store all the agents/global variable 
 ArrayList<agent> agentCollection;
@@ -30,6 +35,7 @@ boolean collision = false;
 IntList collision_index;
 
 void setup() {
+  randomSeed(0);
   size(640, 360);
   background(102);
   noStroke();
@@ -50,34 +56,42 @@ void setup() {
     } else {
       reverse = false;
     }
-    agent myAgent = new agent(i, x, y, thisspeed, reverse ); 
+    agent myAgent = new agent(i, x, y, thisspeed, agent_radius, reverse ); 
     agentCollection.add(myAgent);
   }
-  
-  
+  //Add player to the agent list
+  player = new agent(n_crowd, init_player_pos.x, init_player_pos.y, init_player_speed, player_radius, false ); 
+  agentCollection.add(player);
 }
 
 void draw() {
    background(0,0,0);
     collision  = false;
   
+  // Calculate Forces
   for (int i = 0; i < n_crowd; i++) {
-       
+      agentCollection.get(i).calc_forces(agentCollection);
+  }
+  
+  // Apply Forces
+  for (int i = 0; i < n_crowd; i++) {
       agentCollection.get(i).update();
       agentCollection.get(i).collision_detection();
-
-    }
-
+  }
+  
+  // Move player
+  player.pos.x  = player.pos.x + player.speed;  
+  text("collision count: " + collision_index.size(), 20, 20); 
+  text("speed mu = " + x_speed_mu + " (" + x_speed_sd + ")", 20, height - 20);
+  
+  // Draw player
   ellipseMode(CENTER);
   fill(255);
-  ellipse(player_x, player_y, player_radius, player_radius);
-  player_x  = player_x + player_speed;  
-  text("collision count: " + collision_index.size(), 20, 20); 
-  text("speed mu = " + x_speed_mu + " (" + x_speed_sd + ")", 20, height - 20); 
+  ellipse(player.pos.x, player.pos.y, player.radius, player.radius);
    
    // end run if the player reaches the other side. 
    // we can make this more elaborate later 
-   if(player_x > width) {
+   if(player.pos.x > width) {
      exit();
    }
 }
@@ -85,8 +99,8 @@ void draw() {
 void keyPressed() {
   //print(keyCode);
   if (keyCode == 40) {
-      player_y = player_y + 5;
+      player.pos.y = player.pos.y + 5;
     } else if (keyCode == 38) {
-      player_y = player_y - 5;
+      player.pos.y = player.pos.y - 5;
     } 
 }
