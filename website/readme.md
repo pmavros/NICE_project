@@ -1,3 +1,3 @@
-# REBEL's Website
+# The NICE project's Website
 
-- https://realitybending.github.io/
+- https://pmavros.github.io/NICE_project/
