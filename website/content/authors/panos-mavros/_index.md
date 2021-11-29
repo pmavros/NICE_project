@@ -11,7 +11,7 @@ role: Principal Investigator, Senior Researcher
 # Organizations/Affiliations to show in About widget
 organizations:
 - name: Future Cities Laboratory, Singapore-ETH Centre, Singapore
-  url: https://www.fcl.etzh.ch/
+  url: https://www.fcl.ethz.ch/
 
 # Short bio (displayed in user profile at end of posts)
 bio: Trained as an architect and specialised in spatial cognition and navigation, I am currently working as a senior researcher at the Future Cities Laboratory of the Singapore-ETH Centre, working with the Chair of Cognitive Science (ETH Zürich) on spatial cognition, navigation and experience in complex urban environments.
@@ -19,11 +19,12 @@ bio: Trained as an architect and specialised in spatial cognition and navigation
 # Interests to show in About widget
 interests:
 - Spatial Cognition
+- Environmental Neuroscience
 - Architecture
 - Urban Design
 - Emotion & places
-- Environmental Neuroscience
-- Neapolitan pizze 🍕
+
+
 
 # Education to show in About widget
 education:

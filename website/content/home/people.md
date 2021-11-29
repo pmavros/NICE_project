@@ -2,6 +2,7 @@
 content:
   user_groups:
   - Principal Investigators
+  - Co Investigators
   - Researchers
   - Associates
   - Grad Students
