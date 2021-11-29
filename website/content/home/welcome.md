@@ -8,11 +8,7 @@ headless: true  # This file represents a page section.
 weight: 10  # Order that this section will appear.
 title: "**NICE** Project"
 subtitle: ""
-<<<<<<< HEAD
 hero_media: 210604_Nice_banner_sm.jpg
-=======
-hero_media: welcome.jpg
->>>>>>> parent of ed5bf77 (Update welcome.md)
 design:
   # Choose how many columns the section has. Valid values: 1 or 2.
   columns: '1'
