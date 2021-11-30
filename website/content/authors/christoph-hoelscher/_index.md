@@ -16,5 +16,9 @@ organizations:
 
 - name: Future Cities Laboratory, Singapore-ETH Centre, Singapore
   url: https://www.fcl.ethz.ch/
+
+# status
+user_groups:
+- Co Investigators 
 ---
 
