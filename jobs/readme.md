@@ -25,7 +25,9 @@ The project is a collaboration between the Clinical Brain Lab (NTU) and the Futu
 
 **How to apply**:
 
-Send CV and any other relevant documents to *panos.mavros@sec.ethz.ch* and *dom.makowski@gmail.com*.
+Apply through the NTU website [link](https://ntu.wd3.myworkdayjobs.com/en-US/Careers/job/NTU-Main-Campus-Singapore/Research-Assistant--Psychology-_R00008329)
+
+OR, send CV and any other relevant documents to *panos.mavros@sec.ethz.ch* and *dom.makowski@gmail.com*.
 
 <!-- 👉 Through the [**official link**](TODO). -->
 
