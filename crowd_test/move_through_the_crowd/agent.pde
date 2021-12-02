@@ -1,3 +1,5 @@
+// implementation of social force model 
+
 class agent { 
   int id;
   PVector pos;
@@ -46,12 +48,7 @@ class agent {
      vel=direction.copy().mult(speed*dt);
      
      pos = pos.add(vel.copy().mult(dt));
-     
-        
-    ///float jerkiness_probability = 0.05;
-    ///if(random(0,1) < jerkiness_probability) {
-    ///  y_speed = random(1, 10);
-    ///}
+  
 
     // Respawn agent at the edge
     if (pos.x > width) { 
@@ -113,6 +110,7 @@ class agent {
   
   PVector internal_force(PVector destination){
     // Using mean values of Moussaid-Helbing 2009
+    // default tau = 0.54;
     float tau=0.54;
     PVector desired_direction = PVector.sub(destination,pos);
     PVector desired_velocity = desired_direction.copy().normalize().mult(max_speed);
@@ -123,11 +121,18 @@ class agent {
   
   PVector social_force(ArrayList<agent> neighbours){
     // Using mean values of Moussaid-Helbing 2009
-    float A  = 4.5;
-    float gamma = 0.35;
-    float n = 2;
+    // defaults
+    //float A  = 4.5;
+    //float gamma = 0.35;
+    //float n = 2;
+    //float n_prime = 3;
+    //float lambda = 2.0;
+    
+    float A  = 1.5;
+    float gamma = 1.35;
+    float n = 0.5; // controls how much they pivot around when approaching another agent
     float n_prime = 3;
-    float lambda = 2.0;
+    float lambda = 4.0;
     
     PVector force = new PVector(0,0);
     
@@ -196,7 +201,13 @@ class agent {
       }
       
       if(collision) {
-         background(255,0,0);
+         
+        fill(255,0,0);
+         rect(0, 0, width, height/2 - corridor_halfwidth-20);
+         rect(0, height/2 + corridor_halfwidth + 20, width, height);
+         
+         fill(0);
+         //rect(0, height/2 - corridor_halfwidth-20, width, height/2 + corridor_halfwidth+20);
    
         
         if(collision_index.size() > 0 )  { // list has been initiated and the last collision was with a different agent

@@ -1,5 +1,5 @@
 // Move through the crowd
-// Author: Panos Mavros
+// Authors: Panos Mavros, Leonel Aguilar
 
 // objective:
 // simple animated game where the user moves through the screen
@@ -12,10 +12,15 @@
 // now the crowd is very crude. we could add the social force model.
 // lines connecting the player with all other agents (crowd) are there for debugging
 // eventually need to log files, enter player id
-// also build game ";evels"
+// also build game "levels"
+
+// Game parameters
+IntList crowd_per_level = new IntList(10, 50, 100, 150, 200);
+int level = -1;
+String state = "instructions";
 
 // Player parameters
-PVector init_player_pos = new PVector(0,180);
+PVector init_player_pos = new PVector(0, height/2); // x,y
 float init_player_speed = 1;
 float player_radius = 10;
 float agent_radius = 2;
@@ -23,10 +28,11 @@ float agent_radius = 2;
 agent player;
 
 // Crowd parameters
-int n_crowd = 100;
-float x_speed_mu = 1; // mean speed of crowd
-int x_speed_sd = 1; // standard deviation of crowd-speed
+//int n_crowd = 100;
+float x_speed_mu = .5; // mean speed of crowd
+float x_speed_sd = 1.4; // standard deviation of crowd-speed
 float reverse_prob = 0.5; // change to specify percent of agents that are walking in opposite direction
+int corridor_halfwidth = 50;
 
 //DECLARE - store all the agents/global variable 
 ArrayList<agent> agentCollection;
@@ -36,19 +42,26 @@ IntList collision_index;
 
 void setup() {
   randomSeed(0);
+  frameRate(20);
   size(640, 360);
   background(102);
   noStroke();
   fill(0, 102);
+  
+  //level = 1;
+  println(crowd_per_level.size());
     
   collision_index = new IntList();
   agentCollection = new ArrayList<agent>();
-
-  for(int i = 0; i < n_crowd; i++) {
+  init_player_pos = new PVector(0, height/2);
+  
+  for(int i = 0; i < crowd_per_level.get(level); i++) {
     
     boolean reverse = false;
     float x = random(0, width);
-    float y = random(0, height);
+    
+    // define a 'corridor' where agents are spawned
+    float y = random(height/2 - corridor_halfwidth , height/2 + corridor_halfwidth);
     float thisspeed =  random(0,1) * x_speed_sd + x_speed_mu;
    
     if(random(0,1) > (1 - reverse_prob)) {
@@ -60,47 +73,36 @@ void setup() {
     agentCollection.add(myAgent);
   }
   //Add player to the agent list
-  player = new agent(n_crowd, init_player_pos.x, init_player_pos.y, init_player_speed, player_radius, false ); 
+  player = new agent(crowd_per_level.get(level), init_player_pos.x, init_player_pos.y, init_player_speed, player_radius, false ); 
   agentCollection.add(player);
+  
+  println(crowd_per_level.get(level));
 }
 
 void draw() {
-   background(0,0,0);
-    collision  = false;
-  
-  // Calculate Forces
-  for (int i = 0; i < n_crowd; i++) {
-      agentCollection.get(i).calc_forces(agentCollection);
-  }
-  
-  // Apply Forces
-  for (int i = 0; i < n_crowd; i++) {
-      agentCollection.get(i).update();
-      agentCollection.get(i).collision_detection();
-  }
-  
-  // Move player
-  player.pos.x  = player.pos.x + player.speed;  
-  text("collision count: " + collision_index.size(), 20, 20); 
-  text("speed mu = " + x_speed_mu + " (" + x_speed_sd + ")", 20, height - 20);
-  
-  // Draw player
-  ellipseMode(CENTER);
-  fill(255);
-  ellipse(player.pos.x, player.pos.y, player.radius, player.radius);
-   
-   // end run if the player reaches the other side. 
-   // we can make this more elaborate later 
-   if(player.pos.x > width) {
-     exit();
-   }
+   game_state();
+}
+
+void show_boundaries(){
+  stroke(255);
+  line(0, height/2 - corridor_halfwidth-20, width, height/2 - corridor_halfwidth-20 );
+  line(0, height/2 + corridor_halfwidth+20, width, height/2 + corridor_halfwidth+20 );
 }
 
 void keyPressed() {
-  //print(keyCode);
-  if (keyCode == 40) {
-      player.pos.y = player.pos.y + 5;
-    } else if (keyCode == 38) {
+  println(keyCode);
+  int corridor_top = height/2 - corridor_halfwidth;
+  int corridor_bottom = height/2 + corridor_halfwidth;
+  
+  if (keyCode == 38 && player.pos.y >= corridor_top) { // arrow up 
       player.pos.y = player.pos.y - 5;
-    } 
+    } else if (keyCode == 40 && player.pos.y <= corridor_bottom ) { // arrow down
+      player.pos.y = player.pos.y + 5;
+    } else if(keyCode == 80) { // P
+      player.pos.x = 0;
+      if(level < crowd_per_level.size()-1){
+        level = level + 1; 
+      }
+      state = "play";
+    }
 }
