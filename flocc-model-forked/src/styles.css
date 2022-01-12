@@ -1,0 +1,43 @@
+body {
+  font-family: sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#text.fixed {
+  padding-top: 0px;
+  width: 80%;
+  background-color: lightblue;
+  left: auto;
+  right: auto;
+  margin: auto;
+  overflow: auto;
+}
+
+#container.fixed {
+  padding-top: 30px;
+  width: 80%;
+  height: auto;
+  background-color: rgb(170, 15, 15);
+  left: auto;
+  right: auto;
+  margin: auto;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
