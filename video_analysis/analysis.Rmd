@@ -1,13 +1,17 @@
 ---
 title: "Stimuli Analysis"
-output: html_document
 date: '2022-02-25'
 editor_options: 
   chunk_output_type: console
+output:
+  html_document:
+    theme: cerulean
+    toc: TRUE
+    toc_float: TRUE
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.path = "figures/")
 ```
 
 ```{r message=FALSE, warning=FALSE}
@@ -15,12 +19,12 @@ library(Rtsne)
 library(tidyverse)
 library(easystats)
 
-
-df <- read.csv("data_objective.csv") |> 
+# TODO: join with metadata
+df <- read.csv("data_objective.csv") |>
   mutate(Typology = ifelse(str_detect(File, "City"), "City", "Green"))
 
 # Remove duplicates
-df <- df[!duplicated(select(df, -File, -Typology)), ] 
+df <- df[!duplicated(select(df, -File, -Typology)), ]
 ```
 
 
@@ -30,36 +34,81 @@ Applying t-Distributed Stochastic Neighbor Embedding (t-SNE).
 
 
 ```{r message=FALSE, warning=FALSE}
-rez <- df |> 
-  select(RedGreen, BlueYellow , Colorfulness, Contrast, Saturation, 
-         Entropy, Brightness, Luminance_Perceived, Faces) |> 
-  scale() |> 
-  Rtsne(dims = 3, perplexity = 30)  %>%
-  .$Y |> 
+rez <- df |>
+  select(
+    RedGreen, BlueYellow, Colorfulness, Contrast, Saturation,
+    Entropy, Brightness, Luminance_Perceived, Faces
+  ) |>
+  scale() |>
+  Rtsne(dims = 3, perplexity = 30) %>%
+  .$Y |>
   as.data.frame() %>%
-  data_rename(paste0("tSNE_", 1:ncol(.))) |> 
+  data_rename(paste0("tSNE_", 1:ncol(.))) |>
   cbind(df)
+```
 
-labels <- rez[rez$tSNE_1 < -10 | rez$tSNE_1 > 13.5, ]
 
+```{r message=FALSE, warning=FALSE}
+correlation::correlation(
+  select(rez, starts_with("tSNE")),
+  select(
+    rez, RedGreen, BlueYellow, Colorfulness, Contrast, Saturation,
+    Entropy, Brightness, Luminance_Perceived, Faces
+  )
+) |>
+  arrange(Parameter1, desc(r))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=7}
 # 3D scatter
 # library(plotly)
-# plot_ly(rez, x = ~tSNE_1, y = ~tSNE_2, z=~tSNE_3, 
+# plot_ly(rez, x = ~tSNE_1, y = ~tSNE_2, z=~tSNE_3,
 #         color=~Typology, symbol = ~Typology,
 #         type="scatter3d", mode="markers",
 #         colors = c("red", "green")))
 
-rez |> 
+# Base plot ------
+p <- rez |>
   ggplot(aes(x = tSNE_1, y = tSNE_2)) +
-  geom_point(aes(shape = Typology, color = tSNE_3)) +
-  ggrepel::geom_text_repel(aes(label=File), ) +
-  scale_color_viridis_c(guide = "none") +
-  theme_void()
+  geom_point(aes(shape = Typology, color = tSNE_3), size = 3) +
+  scale_color_viridis_c(guide = "colourbar") +
+  theme_classic() +
+  ggtitle("t-Distributed Stochastic Neighbor Embedding (t-SNE)") +
+  theme(axis.ticks = element_blank(),
+        axis.line = element_blank(),
+        panel.border = element_rect(color = "grey", fill = NA))
+
+# Add snapshots ------
+# Create dataframe with stimuli that we want to add images for
+labels <- rez[rez$tSNE_1 == min(rez$tSNE_1) | rez$tSNE_1 == max(rez$tSNE_1) |
+  rez$tSNE_2 == min(rez$tSNE_2) | rez$tSNE_2 == max(rez$tSNE_2) |
+  rez$tSNE_3 == min(rez$tSNE_3) | rez$tSNE_3 == max(rez$tSNE_3), ]
+
+# For each of these example, get the screenshot and add it
+for (i in 1:nrow(labels)) {
+  img <- png::readPNG(paste0("C:/Dropbox/vimeo/frame/", labels$File[i], ".png")) |>
+    grid::rasterGrob(interpolate = TRUE)
+  y <- labels$tSNE_2[i]
+  x <- labels$tSNE_1[i]
+  xunit <- diff(range(rez$tSNE_1)) / 10
+  yunit <- diff(range(rez$tSNE_2)) / 10
+  p <- p +
+    geom_segment(
+      y = y, yend = y, x = x, xend = min(rez$tSNE_1) - xunit * 0.1,
+      size = 0.2, linetype = "dashed"
+    ) +
+    annotation_custom(img,
+      # xmin=x - xrange / 30, xmax=x + xrange / 30,
+      xmin = min(rez$tSNE_1) - xunit * 1.6, xmax = min(rez$tSNE_1) - xunit * 0.1,
+      ymin = y - yunit, ymax = y + yunit
+    )
+}
+p + coord_cartesian(xlim = c(min(rez$tSNE_1) - xunit * 1.6, max(rez$tSNE_1)), ylim = range(rez$tSNE_2))
 ```
 
 
 ## Stimuli
 
 ```{r message=FALSE, warning=FALSE}
-select(df, -File)
+knitr::kable(df, digits = 2)
 ```
