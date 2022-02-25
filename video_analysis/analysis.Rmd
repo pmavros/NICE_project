@@ -107,6 +107,63 @@ p + coord_cartesian(xlim = c(min(rez$tSNE_1) - xunit * 1.6, max(rez$tSNE_1)), yl
 ```
 
 
+## PCA
+
+
+```{r message=FALSE, warning=FALSE}
+rez <- df |>
+  select(
+    RedGreen, BlueYellow, Colorfulness, Contrast, Saturation,
+    Entropy, Brightness, Luminance_Perceived, Faces
+  ) |>
+  parameters::principal_components(n = 3)
+
+rez
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=7}
+data <- cbind(predict(rez), df)
+
+# Base plot ------
+p <- data |>
+  ggplot(aes(x = Component_1, y = Component_2)) +
+  geom_point(aes(shape = Typology, color = Component_3), size = 3) +
+  scale_color_viridis_c(guide = "colourbar") +
+  theme_classic() +
+  ggtitle("Principal Component Analysis") +
+  theme(axis.ticks = element_blank(),
+        axis.line = element_blank(),
+        panel.border = element_rect(color = "grey", fill = NA))
+
+# Add snapshots ------
+# Create dataframe with stimuli that we want to add images for
+labels <- data[data$Component_1 == min(data$Component_1) | data$Component_1 == max(data$Component_1) |
+  data$Component_2 == min(data$Component_2) | data$Component_2 == max(data$Component_2) |
+  data$Component_3 == min(data$Component_3) | data$Component_3 == max(data$Component_3), ]
+
+# For each of these example, get the screenshot and add it
+for (i in 1:nrow(labels)) {
+  img <- png::readPNG(paste0("C:/Dropbox/vimeo/frame/", labels$File[i], ".png")) |>
+    grid::rasterGrob(interpolate = TRUE)
+  y <- labels$Component_2[i]
+  x <- labels$Component_1[i]
+  xunit <- diff(range(data$Component_1)) / 10
+  yunit <- diff(range(data$Component_2)) / 10
+  p <- p +
+    geom_segment(
+      y = y, yend = y, x = x, xend = min(data$Component_1) - xunit * 0.1,
+      size = 0.2, linetype = "dashed"
+    ) +
+    annotation_custom(img,
+      # xmin=x - xrange / 30, xmax=x + xrange / 30,
+      xmin = min(data$Component_1) - xunit * 1.6, xmax = min(data$Component_1) - xunit * 0.1,
+      ymin = y - yunit, ymax = y + yunit
+    )
+}
+p + coord_cartesian(xlim = c(min(data$Component_1) - xunit * 1.6, max(data$Component_1)), ylim = range(data$Component_2))
+```
+
 ## Stimuli
 
 ```{r message=FALSE, warning=FALSE}
