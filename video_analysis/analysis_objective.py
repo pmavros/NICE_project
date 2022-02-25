@@ -1,4 +1,5 @@
 import glob
+import os
 
 import imageio  # also requires imageio-ffmpeg
 import numpy as np
@@ -7,8 +8,10 @@ import pyllusion as pyl
 import skvideo.utils
 from matplotlib import pyplot as plt
 
+stimuli_dir = "C:/Dropbox/vimeo/"
+
 data = []  # Initialize empty list for data
-for stim in glob.glob("./*.mp4"):
+for stim in glob.glob(os.path.join(stimuli_dir, "*.mp4")):
     print(stim)
 
     # Read video
@@ -19,22 +22,27 @@ for stim in glob.glob("./*.mp4"):
 
     print(plt.imshow(videodata[0]))  # Show first frame
 
+    n_frames = video.count_frames()
+
     # Initialize output
     out = {
-        "Redness": np.full(video.count_frames(), np.nan),
-        "Greenness": np.full(video.count_frames(), np.nan),
-        "Blueness": np.full(video.count_frames(), np.nan),
-        "Yellowness": np.full(video.count_frames(), np.nan),
-        "RedGreen": np.full(video.count_frames(), np.nan),
-        "BlueYellow": np.full(video.count_frames(), np.nan),
-        "Colorfulness": np.full(video.count_frames(), np.nan),
-        "Contrast": np.full(video.count_frames(), np.nan),
-        "Structure": np.full(video.count_frames(), np.nan),
-        "Saturation": np.full(video.count_frames(), np.nan),
-        "Entropy": np.full(video.count_frames(), np.nan),
-        "Brightness": np.full(video.count_frames(), np.nan),
-        "Luminance": np.full(video.count_frames(), np.nan),
-        "Luminance_Perceived": np.full(video.count_frames(), np.nan),
+        x: np.full(n_frames, np.nan)
+        for x in [
+            "Redness",
+            "Greenness",
+            "Blueness",
+            "Yellowness",
+            "RedGreen",
+            "BlueYellow",
+            "Colorfulness",
+            "Contrast",
+            "Structure",
+            "Saturation",
+            "Entropy",
+            "Brightness",
+            "Luminance",
+            "Luminance_Perceived",
+        ]
     }
 
     # Naturalness score
@@ -45,9 +53,9 @@ for stim in glob.glob("./*.mp4"):
 
     # Compute per frame
     for i, frame in enumerate(video):
-        if i % 20 != 0:  # Iterate every nth element
+        if i % 100 != 0:  # Iterate every nth element
             continue
-        print(i)
+        print(np.round(i / n_frames * 100, 2), "%")
         scores = pyl.analyze_image(frame)
         for key, value in scores.items():
             out[key][i] = value
@@ -57,6 +65,8 @@ for stim in glob.glob("./*.mp4"):
 
     # Add info
     out["File"] = [stim]
+    out["Resolution"] = [str(frame.shape[1]) + "x" + str(frame.shape[0])]
+    out["Framerate"] = [n_frames / 30]
     data.append(pd.DataFrame(out))
 
-    pd.concat(data, axis=0).to_csv("data.csv", index=False)
+    pd.concat(data, axis=0).to_csv("data_objective.csv", index=False)
