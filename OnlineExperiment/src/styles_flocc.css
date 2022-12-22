@@ -36,8 +36,8 @@ body {
 
 body {
   display: flex;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+width: 100vw;
+height: 100vw;
 }

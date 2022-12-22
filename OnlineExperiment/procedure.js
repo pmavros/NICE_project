@@ -49,9 +49,10 @@ const jsPsych = initJsPsych({
       /* preload images */
     var preload = {
       type: jsPsychPreload,
-      videos: videos
+      videos: [      'https://www.dropbox.com/s/csixopos06r9soe/9convert.com%20-%20Walking%20New%20York%20City%20on%20a%20Springlike%20Day%20Manhattan%20NYC%20Waking%20Tour.mp4.mp4?raw=1'
+]
     };
-    timeline.push(preload);
+    // timeline.push(preload);
 
 
     /* define welcome message trial */
@@ -71,9 +72,9 @@ const jsPsych = initJsPsych({
         <p>If the circle is <strong>orange</strong>, press the letter J
         as fast as you can.</p>
         <div style='width: 700px;'>
-        <div style='float: left;'><img src='stimuli/blue.png'></img>
+        <div style='float: left;'><img src='src/blue.png'></img>
         <p class='small'><strong>Press the F key</strong></p></div>
-        <div style='float: right;'><img src='stimuli/orange.png'></img>
+        <div style='float: right;'><img src='src/orange.png'></img>
         <p class='small'><strong>Press the J key</strong></p></div>
         </div>
         <p>Press any key to begin.</p>
@@ -81,8 +82,20 @@ const jsPsych = initJsPsych({
         post_trial_gap: 100
     };
 
-    timeline.push(instructions);
+    // timeline.push(instructions);
 
+    // https://www.dropbox.com/s/csixopos06r9soe/9convert.com%20-%20Walking%20New%20York%20City%20on%20a%20Springlike%20Day%20Manhattan%20NYC%20Waking%20Tour.mp4.mp4?dl=0
+
+    var video =  {
+      type: jsPsychVideoKeyboardResponse,
+      stimulus: [ //'src/fish.mp4'
+        'https://www.dropbox.com/s/csixopos06r9soe/9convert.com%20-%20Walking%20New%20York%20City%20on%20a%20Springlike%20Day%20Manhattan%20NYC%20Waking%20Tour.mp4.mp4?raw=1'
+      ],
+      choices: ['0-5', '6-10','11-15','16-20','21-25','25+'],
+      prompt: "<p>How many different fish are shown in the video?</p>",
+      response_allowed_while_playing: false
+    };
+    timeline.push(video);
     /* define trial stimuli array for timeline variables */
 
     // var video_stimuli = [];

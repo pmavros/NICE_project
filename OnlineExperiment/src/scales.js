@@ -112,6 +112,7 @@ var dsm5 = [
 	"Things around me often feel unreal, or more real than usual. ",
 	"It is easy for me to take advantage of others."
 ];
+
 /* DERS 
 Instruction:
 This part of the questionnaire takes interest in your emotions and feelings, and how you handle them in general. Please select a response that best represents how often, in general, each statement describes you.
@@ -300,10 +301,16 @@ var sps_sf = [
 /* NSS-SF
 Noise sensitivity Scale (short form)
 
+Benfield, J. A., Nurse, G. A., Jakubowski, R., Gibson, A. W., Taff, B. D., Newman, P., & Bell, P. A. (2014). 
+Testing Noise in the Field: A Brief Measure of Individual Noise Sensitivity. Environment and Behavior, 46(3), 353–372. 
+https://doi.org/10.1177/0013916512454430
+https://sites.psu.edu/jbenfield/files/2017/07/Benfield-et-al.-2014-Noise-Sensitivity-Short-Form-1gzbykk.pdf
+
 Measured on a 6-point scale ranging from “disagree strongly” to “agree strongly.” 
 */
 var nss_sf_instruction = "Indicate the degree to which you feel the statement is characteristic or true of you.";
-var nss_sf = [
+var nss_sf_levels = ["disagree strongly" , "disagree", "somewhat disagree", "somewhat agree", "agree", "agree strongly"];
+var nss_sf_questions = [
 	"I am sensitive to noise ",
 	"I find it hard to relax in a place that’s noisy",
 	"I get mad at people who make noise that keeps me from falling asleep or getting work done",
@@ -311,4 +318,8 @@ var nss_sf = [
 	"I get used to most noises without much difficulty."
 ];
 
-
+var nss_sf_scale = [];
+nss_sf_questions.forEach( function (item) {
+  nss_sf_scale.push({prompt: item, name: 'nss_sf', required: true, labels: nss_sf_levels
+  });
+});
